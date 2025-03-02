@@ -41,3 +41,9 @@ variable "db-private-subnet1" {
 variable "db-private-subnet2" {
   
 }
+
+variable "eip1-name" {
+}
+
+variable "eip2-name" {
+}

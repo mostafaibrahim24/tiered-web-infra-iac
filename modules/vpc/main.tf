@@ -88,3 +88,31 @@ resource "aws_subnet" "db-private-subnet2" {
   }
   depends_on = [ aws_subnet.db-private-subnet1]
 }
+
+# ----------------------- NAT -----------------------
+resource "aws_eip" "natgw-eip1" {
+  domain = "vpc"
+
+  tags = {
+    Name = var.eip1-name
+  }
+
+  depends_on = [ aws_subnet.web-public-subnet1 ]
+}
+resource "aws_nat_gateway" "natgw1" {
+  subnet_id = aws_subnet.web-public-subnet1
+  allocation_id = aws_eip.natgw-eip1.id
+}
+resource "aws_eip" "natgw-eip2" {
+  domain = "vpc"
+
+  tags = {
+    Name = var.eip2-name
+  }
+
+  depends_on = [ aws_subnet.web-public-subnet2]
+}
+resource "aws_nat_gateway" "natgw2" {
+  subnet_id = aws_subnet.web-public-subnet2
+  allocation_id = aws_eip.natgw-eip2.id
+}
