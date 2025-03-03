@@ -8,10 +8,7 @@ resource "aws_vpc" "vpc"{
       Name = var.vpc-name
     }
 }
-variable "vpc-cidrblock" {
-}
-variable "vpc-name" {
-}
+
 # VPC's IGW
 resource "aws_internet_gateway" "igw" {
   depends_on = [ aws_vpc.vpc ]
@@ -19,9 +16,6 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = var.igw-name
   }
-}
-variable "igw-name" {
-  
 }
 # ----------------------- Public subnets of the web tier -----------------------
 resource "aws_subnet" "web-public-subnet1" {
@@ -102,6 +96,9 @@ resource "aws_eip" "natgw-eip1" {
 resource "aws_nat_gateway" "natgw1" {
   subnet_id = aws_subnet.web-public-subnet1
   allocation_id = aws_eip.natgw-eip1.id
+  tags = {
+    Name = var.natgw1-name
+  }
 }
 resource "aws_eip" "natgw-eip2" {
   domain = "vpc"
@@ -115,6 +112,9 @@ resource "aws_eip" "natgw-eip2" {
 resource "aws_nat_gateway" "natgw2" {
   subnet_id = aws_subnet.web-public-subnet2
   allocation_id = aws_eip.natgw-eip2.id
+  tags = {
+    Name = var.natgw2-name
+  }
 }
 # ----------------------- Route tables and associations with subnets -----------------------
     # Public RT to internet and associations with the web public subnets

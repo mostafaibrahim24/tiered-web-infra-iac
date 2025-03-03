@@ -1,10 +1,18 @@
-data "aws_ami" "ami" {
+data "aws_ami" "web-ami" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    values = [var.web-ami-identifier]
   }
-  owners = ["099720109477"] 
+  owners = [var.web-ami-image-owner] 
+}
+data "aws_ami" "app-ami" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = [var.app-ami-identifier]
+  }
+  owners = [var.app-ami-image-owner] 
 }
 data "aws_security_group" "web-tier-sg" {
   filter {
@@ -63,21 +71,28 @@ data "aws_lb_target_group" "app-target-group" {
 # --------------------- Launch templates ---------------------
 resource "aws_launch_template" "web-launch-template" {
   name = var.web-launch-template-name
-  image_id = data.aws_ami.ami.image_id
+  image_id = data.aws_ami.web-ami.image_id
   instance_type = "t2.micro"
 
   vpc_security_group_ids = [data.aws_security_group.web-tier-sg]
+
+  tags = {
+    Name = var.web-launch-template-name
+  }
 # The actual app, imo: - with packer create a custom image and then change aws_ami data source to reference it - using ansible
 #   OR user_data = filebase64("./deployyourapp.sh")
 }
 resource "aws_launch_template" "app-launch-template" {
   name = var.app-launch-template-name
-  image_id = data.aws_ami.ami.image_id
+  image_id = data.aws_ami.app-ami.image_id
   instance_type = "t2.micro"
 
   vpc_security_group_ids = [data.aws_security_group.app-tier-sg]
 # The actual app, imo: - with packer create a custom image and then change aws_ami data source to reference it - using ansible
 #  OR  user_data = filebase64("./deployyourapp.sh")
+  tags = {
+    Name = var.app-launch-template-name
+  }
 }
 
 # --------------------- Autoscaling groups ---------------------

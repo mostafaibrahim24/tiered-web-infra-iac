@@ -13,9 +13,6 @@ variable "web-lb-sg-name" {
 variable "web-lb-name" {
   
 }
-variable "web-target-group-name" {
-  
-}
 variable "web-http-target-group-name" {
   
 }

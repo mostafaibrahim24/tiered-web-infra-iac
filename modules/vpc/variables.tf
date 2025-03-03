@@ -1,4 +1,10 @@
-
+variable "vpc-cidrblock" {
+}
+variable "vpc-name" {
+}
+variable "igw-name" {
+  
+}
 variable "az1" {
   
 }
@@ -46,6 +52,12 @@ variable "eip1-name" {
 }
 
 variable "eip2-name" {
+}
+variable "natgw1-name" {
+  
+}
+variable "natgw2-name" {
+  
 }
 variable "public-rt-name" {
   

@@ -1,3 +1,15 @@
+variable "web-ami-identifier" {
+  default = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+}
+variable "web-ami-image-owner" {
+  default = "aws-marketplace"
+}
+variable "app-ami-identifier" {
+  default = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+}
+variable "app-ami-image-owner" {
+  default = "aws-marketplace"
+}
 variable "web-tier-sg-name" {}
 variable "app-tier-sg-name" {}
 variable "web-launch-template-name" {}
