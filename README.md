@@ -23,7 +23,7 @@ This modular Infrastructure as Code provisions a **robust**, **highly available*
 ## Usage
 
 1.  Clone the repository.
-2.  Configure the `variables.tf` file with your desired settings.
+2.  Check main.tf for an example of using modules and Add variables values (whether cli args or TF_VAR env vars or .tfvars .auto.tfvars or defaults in variables.tf)
 3.  Run `terraform init` to initialize the Terraform project.
 4.  Run `terraform plan` to preview the changes.
 5.  Run `terraform apply` to deploy the infrastructure.
