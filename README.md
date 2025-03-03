@@ -1,4 +1,8 @@
 # AWS Multi-Tier Web Application Infrastructure - Terraform Deployment
+<p align="center">
+  <img src=https://github.com/user-attachments/assets/2f865e3d-4195-45a1-895a-6dd051ec58ed width=80 height=80\>
+  <img src=https://github.com/user-attachments/assets/abfeb16e-7d3d-4efc-97aa-c85e1340224d width=100 height=70\>
+</p>
 
 This modular Infrastructure as Code provisions a **robust**, **highly available**, **scalable**, **secure** multi-tier web application infrastructure on AWS.
 
@@ -7,7 +11,9 @@ This modular Infrastructure as Code provisions a **robust**, **highly available*
 * **Application Tier:** Internal Load Balancer (ALB) for distributing traffic within the application tier and Auto Scaling Group (ASG) for EC2
 * **Database Tier:** Multi-AZ RDS cluster (primary instance and read replica) for high availability and reliability.
 ## Diagram
-![tier drawio (2)](https://github.com/user-attachments/assets/7fde6af6-d2e1-416c-84d2-f67c794b75d0)
+<p align="center">
+  <img src=https://github.com/user-attachments/assets/7fde6af6-d2e1-416c-84d2-f67c794b75d0 width=700 height=640\>
+</p>
 
 ## Properties
 * **High Availability:** Multi-AZ deployments to ensure fault tolerance and minimize downtime.
@@ -16,6 +22,29 @@ This modular Infrastructure as Code provisions a **robust**, **highly available*
 * **Tiered Architecture:** Separating concerns, making it easier to manage individual components and enhances security by isolating different components.
 * **Cost-Effectiveness:** Auto Scaling scale down policies for both web and app tiers reducing costs when instances are not needed.
 * **Improved performance:** Load balancers for both tiers to distribute traffic accross multiple instances.
+
+## Modules
+```
+├── modules
+│   ├── asgs
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── lbs
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── rds
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── security-groups
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   ├── vpc
+│   │   ├── main.tf
+│   │   └── variables.tf
+│   └── waf
+│       ├── main.tf
+│       └── variables.tf
+```
 
 ## Prerequisites
 
