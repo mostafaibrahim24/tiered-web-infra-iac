@@ -6,6 +6,8 @@ This modular Infrastructure as Code provisions a **robust**, **highly available*
 * **Web Tier:** Load Balancer (ALB) for distributing incoming traffic (Both HTTP and HTTPS), Auto Scaling Group (ASG) for EC2 and Web Application Firewall (WAF) to protect from suspicious traffic.
 * **Application Tier:** Internal Load Balancer (ALB) for distributing traffic within the application tier and Auto Scaling Group (ASG) for EC2
 * **Database Tier:** Multi-AZ RDS cluster (primary instance and read replica) for high availability and reliability.
+## Diagram
+![tier drawio (2)](https://github.com/user-attachments/assets/7fde6af6-d2e1-416c-84d2-f67c794b75d0)
 
 ## Properties
 * **High Availability:** Multi-AZ deployments to ensure fault tolerance and minimize downtime.
