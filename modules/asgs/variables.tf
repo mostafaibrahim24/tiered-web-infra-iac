@@ -43,3 +43,21 @@ variable "app-private-subnet1" {
 variable "app-private-subnet2" {
   
 }
+variable "web-tier-instance-type" {
+  default = "t2.micro"
+}
+variable "app-tier-instance-type" {
+  default = "t2.micro"
+}
+variable "web-tier-asg-min" {
+  default = 2
+}
+variable "web-tier-asg-max" {
+  default = 4
+}
+variable "app-tier-asg-min" {
+  default = 2
+}
+variable "app-tier-asg-max" {
+  default = 4
+}

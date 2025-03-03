@@ -57,6 +57,11 @@ module "rds" {
   rds-pwd = var.rds-pwd
   db-name = var.db-name
   rds-cluster-name = var.rds-cluster-name
+  rds-db-engine = var.rds-db-engine
+  rds-db-engine-version = var.rds-db-engine-version
+  db-port = var.db-port
+  primary-instance-class = var.primary-instance-class
+  read-replica-instance-class = var.read-replica-instance-class
   depends_on = [ module.security-groups ]
 }
 
@@ -90,18 +95,24 @@ module "asgs" {
   web-http-target-group-name = var.web-http-target-group-name
   web-https-target-group-name = var.web-https-target-group-name
   web-launch-template-name = var.web-launch-template-name
+  web-tier-instance-type = var.web-tier-instance-type
   web-public-subnet1 = var.web-public-subnet1
   web-public-subnet2 = var.web-public-subnet2
   web-tier-sg-name = var.web-tier-sg-name
+  web-tier-asg-min = var.web-tier-asg-min
+  web-tier-asg-max = var.web-tier-asg-max
   # App
   app-asg-name = var.app-asg-name
   app-ami-identifier = var.app-ami-identifier
   app-ami-image-owner = var.app-ami-image-owner
   app-target-group-name = var.app-target-group-name
   app-launch-template-name = var.app-launch-template-name
+  app-tier-instance-type = var.app-tier-instance-type
   app-private-subnet1 = var.app-private-subnet1
   app-private-subnet2 = var.app-private-subnet2
   app-tier-sg-name = var.app-tier-sg-name
+  app-tier-asg-min = var.app-tier-asg-min
+  app-tier-asg-max = var.app-tier-asg-max
 
   depends_on = [ module.lbs ]
 }

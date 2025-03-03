@@ -72,7 +72,7 @@ data "aws_lb_target_group" "app-target-group" {
 resource "aws_launch_template" "web-launch-template" {
   name = var.web-launch-template-name
   image_id = data.aws_ami.web-ami.image_id
-  instance_type = "t2.micro"
+  instance_type = var.web-tier-instance-type
 
   vpc_security_group_ids = [data.aws_security_group.web-tier-sg]
 
@@ -85,7 +85,7 @@ resource "aws_launch_template" "web-launch-template" {
 resource "aws_launch_template" "app-launch-template" {
   name = var.app-launch-template-name
   image_id = data.aws_ami.app-ami.image_id
-  instance_type = "t2.micro"
+  instance_type = var.app-tier-instance-type
 
   vpc_security_group_ids = [data.aws_security_group.app-tier-sg]
 # The actual app, imo: - with packer create a custom image and then change aws_ami data source to reference it - using ansible
@@ -100,8 +100,8 @@ resource "aws_launch_template" "app-launch-template" {
 resource "aws_autoscaling_group" "web-asg" {
   name = var.web-asg-name
   vpc_zone_identifier = [data.aws_subnet.web-public-subnet1.id,data.aws_subnet.web-public-subnet2.id]
-  min_size = 2
-  max_size = 4
+  min_size = var.web-tier-asg-min 
+  max_size = var.web-tier-asg-max
   launch_template {
     id = aws_launch_template.web-launch-template.id
     version = aws_launch_template.web-launch-template.latest_version
@@ -122,8 +122,8 @@ resource "aws_autoscaling_group" "web-asg" {
 resource "aws_autoscaling_group" "app-asg" {
   name = var.app-asg-name
   vpc_zone_identifier = [data.aws_subnet.app-private-subnet1.id,data.aws_subnet.app-private-subnet2.id]
-  min_size = 2
-  max_size = 4
+  min_size = var.app-tier-asg-min
+  max_size = var.app-tier-asg-max
   launch_template {
     id = aws_launch_template.app-launch-template.id
     version = aws_launch_template.app-launch-template.latest_version

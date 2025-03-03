@@ -21,3 +21,18 @@ variable "db-name" {
 variable "rds-cluster-name" {
   
 }
+variable "rds-db-engine" {
+  default = "aurora-mysql"
+}
+variable "rds-db-engine-version" {
+  default = "8.0.mysql_aurora.3.02.2"
+}
+variable "primary-instance-class" {
+  default = "db.r5.large"
+}
+variable "read-replica-instance-class" {
+  default = "db.r5.large"
+}
+variable "db-port" {
+  default = 3306
+}

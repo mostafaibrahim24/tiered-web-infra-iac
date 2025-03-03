@@ -22,15 +22,15 @@ resource "aws_db_subnet_group" "db-tier-subnet-gp" {
 }
 resource "aws_rds_cluster" "aurora-cluster" {
   cluster_identifier = "aurora-cluster"
-  engine                  = "aurora-mysql"
-  engine_version          = "8.0.mysql_aurora.3.02.2"
+  engine                  = var.rds-db-engine
+  engine_version          = var.rds-db-engine-version
   master_username         = var.rds-username
-  master_password         = var.rds-pwd #no worries, value won't actually be exposed that way (way of passing it)
+  master_password         = var.rds-pwd 
   backup_retention_period = 7
   preferred_backup_window = "07:00-09:00"
   skip_final_snapshot     = true
   database_name           = var.db-name
-  port                    = 3306
+  port                    = var.db-port
   db_subnet_group_name = aws_db_subnet_group.db-tier-subnet-gp.name
   vpc_security_group_ids = [data.aws_security_group.db-tier-sg]
   tags = {
@@ -42,17 +42,16 @@ resource "aws_rds_cluster" "aurora-cluster" {
 resource "aws_rds_cluster_instance" "primary-instance" {
   cluster_identifier = aws_rds_cluster.aurora-cluster.id
   identifier         = "primary-instance"
-  instance_class     = "db.r5.large"
+  instance_class     = var.primary-instance-class
   engine             = aws_rds_cluster.aurora-cluster.engine
   engine_version     = aws_rds_cluster.aurora-cluster.engine_version
 }
 
 # RDS Read Replica Instance
 resource "aws_rds_cluster_instance" "read-replica-instance" {
-  count              = 1
   cluster_identifier = aws_rds_cluster.aurora-cluster.id
-  identifier         = "read-replica-instance-${count.index}"
-  instance_class     = "db.r5.large"
+  identifier         = "read-replica-instance"
+  instance_class = var.read-replica-instance-class
   engine             = aws_rds_cluster.aurora-cluster.engine
 
   depends_on = [aws_rds_cluster_instance.primary-instance]

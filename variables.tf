@@ -56,3 +56,37 @@ variable "app-ami-identifier" {
 variable "app-ami-image-owner" {
   default = "aws-marketplace"
 }
+variable "web-tier-instance-type" {
+  default = "t2.micro"
+}
+variable "app-tier-instance-type" {
+  default = "t2.micro"
+}
+variable "rds-db-engine" {
+  default = "aurora-mysql"
+}
+variable "rds-db-engine-version" {
+  default = "8.0.mysql_aurora.3.02.2"
+}
+
+variable "primary-instance-class" {
+  default = "db.r5.large"
+}
+variable "read-replica-instance-class" {
+  default = "db.r5.large"
+}
+variable "db-port" {
+  default = 3306
+}
+variable "web-tier-asg-min" {
+  default = 2
+}
+variable "web-tier-asg-max" {
+  default = 4
+}
+variable "app-tier-asg-min" {
+  default = 2
+}
+variable "app-tier-asg-max" {
+  default = 4
+}
