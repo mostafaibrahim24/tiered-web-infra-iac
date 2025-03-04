@@ -13,9 +13,9 @@ This project is a modular Infrastructure as Code that provisions a multi-tier we
 * **Reliable, Performant & Scalable Database**: A *Multi-AZ* RDS cluster with a primary instance and read replica is deployed to handle demanding workloads, improve read performance, and ensure data redundancy.
 * **Tiered Architecture:** Separation of concerns enhances manageability, scalability, and security by isolating different components.  
 ## Showcasing:
-* **Automating and managing cloud infrastructure with Infrastructure as Code using Terraform.** :page_with_curl: :zap:
-* **Architecting Resilient, Secure, Reliable, Cost-Effective and Scalable Cloud Infrastructure on AWS.** :cloud:
-* **Optimizing reusability and scalability by structuring Terraform code into self-contained modules.** 🧱 🏗️
+* Automating and managing cloud infrastructure with Infrastructure as Code using **Terraform**.
+* Architecting Resilient, Secure, Reliable, Cost-Effective and Scalable Cloud Infrastructure on **AWS** :cloud:.
+* Optimizing reusability and scalability by structuring Terraform code into self-contained modules.
 
 
 ## Diagram
