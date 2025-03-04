@@ -5,23 +5,17 @@
 </p>
 
 This project is a modular Infrastructure as Code that provisions a multi-tier web application infrastructure on AWS using terraform.  
-Key Features:
+## Key Features:
 * **Highly Available**: Auto Scaling Groups with Multi-AZ deployments ensure minimal downtime and fault tolerance.
 * **Scalable, Elastic and Cost-Effective:**: Auto Scaling policies and CloudWatch alarms dynamically adjust resources based on CPU utilization, optimizing both performance and cost :moneybag:.
 * **High Performance**: Load Balancers (ALBs) efficiently distribute traffic across web and app tiers, enhancing responsiveness and user experience.
 * **Robust Security**: An AWS WAF that blocks suspicious IPs, anonymous proxies and IP addresses that have been identified as actively engaging in malicious activities (from [MadPot](https://www.aboutamazon.com/news/aws/amazon-madpot-stops-cybersecurity-crime)), while comprehensive Security Groups enforce strict inter-tier communication controls.
 * **Reliable, Performant & Scalable Database**: A *Multi-AZ* RDS cluster with a primary instance and read replica is deployed to handle demanding workloads, improve read performance, and ensure data redundancy.
 * **Tiered Architecture:** Separation of concerns enhances manageability, scalability, and security by isolating different components.  
-
-Why Infrastructure as Code?:
-* Version-controlled & repeatable deployments for consistency.
-* Reduce the risk of manual configuration errors.
-* Facilitate faster deployments and consistent configurations across environments.
-* Faster, consistent deployments across multiple environments.
-
-Why Modules?:
-* Organized & maintainable: Self-contained modules simplify management and updates.
-* Reusable & scalable: Minimizes redundancy, promotes consistency, and adapts to evolving requirements.
+## Showcasing:
+* **Automating and managing cloud infrastructure with Infrastructure as Code using Terraform.**
+* **Architecting Resilient, Secure, Reliable, Cost-Effective and Scalable Cloud Infrastructure on AWS.**
+* **Optimizing reusability and scalability by structuring Terraform code into self-contained modules.**
 
 
 ## Diagram
