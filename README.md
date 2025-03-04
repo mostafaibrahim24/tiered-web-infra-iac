@@ -1,27 +1,33 @@
-# AWS Multi-Tier Web Application Infrastructure - Terraform Deployment
+# AWS Multi-Tier Web Application Infrastructure - Terraform
 <p align="center">
   <img src=https://github.com/user-attachments/assets/2f865e3d-4195-45a1-895a-6dd051ec58ed width=80 height=80\>
   <img src=https://github.com/user-attachments/assets/abfeb16e-7d3d-4efc-97aa-c85e1340224d width=100 height=70\>
 </p>
 
-This modular Infrastructure as Code provisions a **robust**, **highly available**, **scalable**, **secure** multi-tier web application infrastructure on AWS.
+This project is a modular Infrastructure as Code that provisions a multi-tier web application infrastructure on AWS using terraform.  
+Key Features:
+* **Highly Available**: Auto Scaling Groups with Multi-AZ deployments ensure minimal downtime and fault tolerance.
+* **Scalable, Elastic and Cost-Effective:**: Auto Scaling policies and CloudWatch alarms dynamically adjust resources based on CPU utilization, optimizing both performance and cost :moneybag:.
+* **High Performance**: Load Balancers (ALBs) efficiently distribute traffic across web and app tiers, enhancing responsiveness and user experience.
+* **Robust Security**: An AWS WAF that blocks suspicious IPs, anonymous proxies and IP addresses that have been identified as actively engaging in malicious activities (from [MadPot](https://www.aboutamazon.com/news/aws/amazon-madpot-stops-cybersecurity-crime)), while comprehensive Security Groups enforce strict inter-tier communication controls.
+* **Reliable, Performant & Scalable Database**: A *Multi-AZ* RDS cluster with a primary instance and read replica is deployed to handle demanding workloads, improve read performance, and ensure data redundancy.
+* **Tiered Architecture:** Separation of concerns enhances manageability, scalability, and security by isolating different components.  
 
-## Architecture Brief Overview
-* **Web Tier:** Load Balancer (ALB) for distributing incoming traffic (Both HTTP and HTTPS), Auto Scaling Group (ASG) for EC2 and Web Application Firewall (WAF) to protect from suspicious traffic.
-* **Application Tier:** Internal Load Balancer (ALB) for distributing traffic within the application tier and Auto Scaling Group (ASG) for EC2
-* **Database Tier:** Multi-AZ RDS cluster (primary instance and read replica) for high availability and reliability.
+Why Infrastructure as Code?:
+* Version-controlled & repeatable deployments for consistency.
+* Reduce the risk of manual configuration errors.
+* Facilitate faster deployments and consistent configurations across environments.
+* Faster, consistent deployments across multiple environments.
+
+Why Modules?:
+* Organized & maintainable: Self-contained modules simplify management and updates.
+* Reusable & scalable: Minimizes redundancy, promotes consistency, and adapts to evolving requirements.
+
+
 ## Diagram
 <p align="center">
-  <img src=https://github.com/user-attachments/assets/7fde6af6-d2e1-416c-84d2-f67c794b75d0 width=700 height=640\>
+  <img src=https://github.com/user-attachments/assets/b0236b73-ea1b-4bc6-8379-35133c9086da width=700 height=640\>
 </p>
-
-## Properties
-* **High Availability:** Multi-AZ deployments to ensure fault tolerance and minimize downtime.
-* **Scalability and Elasticity:** Auto Scaling policies and CloudWatch alarms are implemented for both web and application tiers enabling dynamic scaling based on CPU utilization, ensuring optimal performance.
-* **Security:** WAF blocking suspicious IPs and anonymous proxies and Comprehensive Security Groups to control the communication including inter-tier communication.
-* **Tiered Architecture:** Separating concerns, making it easier to manage individual components and enhances security by isolating different components.
-* **Cost-Effectiveness:** Auto Scaling scale down policies for both web and app tiers reducing costs when instances are not needed.
-* **Improved performance:** Load balancers for both tiers to distribute traffic accross multiple instances.
 
 ## Modules
 ```
